@@ -3,7 +3,15 @@
 const db = require("./db");
 
 // Require your models and make your associations
+const Campus = require("./campus");
+const Student = require("./student");
+
+Campus.hasMany(Student, {
+  foreignKey: "campusId"
+});
+Student.belongsTo(Campus);
+
 
 module.exports = {
-  db,
+  db, Student, Campus 
 };
