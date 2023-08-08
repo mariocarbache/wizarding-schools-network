@@ -5,6 +5,6 @@ const db = require("../db/index"); // require your database
 //and place your routes here
 const wizardingSchoolsRouter = require("./wizardingSchools");
 
-router.use("/", wizardingSchoolsRouter);
+router.use("/schools", wizardingSchoolsRouter);
 
 module.exports = router;

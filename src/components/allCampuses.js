@@ -7,7 +7,7 @@ const WizardingSchoolsComponent = () => {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await axios.get("/wizarding-schools");
+        const response = await axios.get("/api/schools/");
         setSchools(response.data);
       } catch (error) {
         console.log(response.data);
@@ -22,9 +22,9 @@ const WizardingSchoolsComponent = () => {
     <div>
       <h2>Wizarding Schools</h2>
       <ul>
-        {schools.map((campus) => (
-          <li key={campus.id}>
-            <span>{campus.name}</span>
+        {schools.map((Campus) => (
+          <li key={Campus.id}>
+            <span>{Campus.name}</span>
           </li>
         ))}
       </ul>

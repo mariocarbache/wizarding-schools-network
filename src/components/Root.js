@@ -8,7 +8,7 @@ const Root = () => {
     <div className="navigation">
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/wizarding-schools" element={<WizardingSchoolsComponent />} />
+        <Route path="/api/schools/" element={<WizardingSchoolsComponent />} />
       </Routes>
     </div>
   );

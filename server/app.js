@@ -3,9 +3,12 @@ const path = require("path");
 const cors = require("cors");
 const volleyball = require("volleyball");
 const app = express();
+const apiRouter = require("./api/index");
 
 // static middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
+
+app.use("/api", apiRouter);
 
 app.use(cors());
 app.use(volleyball);
