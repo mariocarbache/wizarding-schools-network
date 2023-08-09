@@ -7,7 +7,7 @@ const Campus = require("./campus");
 const Student = require("./student");
 
 Campus.hasMany(Student, {
-  foreignKey: "campusId"
+  foreignKey: "CampusId"
 });
 Student.belongsTo(Campus);
 

@@ -25,7 +25,7 @@ const StudentsComponent = () => {
         {students.map((student) => (
           <li key={student.id}>
             <strong>{student.firstName} {student.lastName}</strong>
-            <img src="{student.imageUrl}"></img>
+            <img src={student.imageUrl} height="100" width="100"></img>
             <p><strong>GPA: </strong> {student.gpa}</p>
             <p><strong>Email: </strong>{student.email}</p>
           </li>
