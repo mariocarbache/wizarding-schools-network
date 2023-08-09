@@ -8,6 +8,7 @@ const apiRouter = require("./api/index");
 // static middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
 
+
 app.use("/api", apiRouter);
 
 app.use(cors());
