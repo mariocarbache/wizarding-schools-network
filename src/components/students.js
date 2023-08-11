@@ -23,6 +23,15 @@ const StudentsComponent = () => {
     setStudents([...students, newStudent]);
   };
 
+  const handleStudentDelete = async (studentId) => {
+    try {
+      await axios.delete(`/api/students/${studentId}`);
+      setStudents(students.filter((student) => student.id !== studentId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <h2>Wizarding Students</h2>
@@ -34,6 +43,7 @@ const StudentsComponent = () => {
               <Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link>
             </strong>
             <img src={student.imageUrl} height="100" width="100" alt={`${student.firstName} ${student.lastName}`} />
+            <button onClick={() => handleStudentDelete(student.id)}>X</button>
           </li>
         ))}
       </ul>

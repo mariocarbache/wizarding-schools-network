@@ -84,5 +84,44 @@ router.post("/students", async (req, res) => {
     }
 });
 
+router.delete("/wizarding-schools/:id", async (req, res) => {
+    const schoolId = req.params.id;
+  
+    try {
+      const school = await Campus.findByPk(schoolId);
+  
+      if (!school) {
+        return res.status(404).json({ message: "Wizarding school not found" });
+      }
+
+      await school.destroy();
+  
+      res.json({ message: "Wizarding school removed successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
+
+  router.delete("/students/:id", async (req, res) => {
+    const studentId = req.params.id;
+  
+    try {
+      const student = await Student.findByPk(studentId);
+  
+      if (!student) {
+        return res.status(404).json({ message: "Student not found" });
+      }
+  
+      // Delete the student
+      await student.destroy();
+  
+      res.json({ message: "Student removed successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
+
 
 module.exports = router;

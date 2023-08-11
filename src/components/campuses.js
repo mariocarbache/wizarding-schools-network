@@ -23,6 +23,16 @@ const WizardingSchoolsComponent = () => {
     setSchools([...schools, newSchool]);
   };
 
+  const handleSchoolDelete = async (schoolId) => {
+    try {
+      await axios.delete(`/api/wizarding-schools/${schoolId}`);
+      setSchools(schools.filter((school) => school.id !== schoolId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   return (
     <div>
       <h2>Wizarding Schools</h2>
@@ -39,6 +49,7 @@ const WizardingSchoolsComponent = () => {
               <strong>Location: </strong>
               {campus.address}
             </p>
+            <button onClick={() => handleSchoolDelete(campus.id)}>X</button>
           </li>
         ))}
       </ul>
