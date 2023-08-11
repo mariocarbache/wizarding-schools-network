@@ -5,6 +5,7 @@ import WizardingSchoolsComponent from "./campuses";
 import StudentsComponent from "./students";
 import Navbar from "./navbar";
 import SingleSchoolComponent from "./campus";
+import SingleStudentComponent from "./student";
 
 const Root = () => {
   return (
@@ -15,6 +16,7 @@ const Root = () => {
         <Route path="/schools" element={<WizardingSchoolsComponent />} />
         <Route path="/students" element={<StudentsComponent />} />
         <Route path="/schools/:id" element={<SingleSchoolComponent />} />
+        <Route path="/students/:id" element={<SingleStudentComponent />} />
       </Routes>
     </div>
   );

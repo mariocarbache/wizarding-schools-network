@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const StudentsComponent = () => {
@@ -24,10 +25,8 @@ const StudentsComponent = () => {
       <ul>
         {students.map((student) => (
           <li key={student.id}>
-            <strong>{student.firstName} {student.lastName}</strong>
+            <strong><Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link></strong>
             <img src={student.imageUrl} height="100" width="100"></img>
-            <p><strong>GPA: </strong> {student.gpa}</p>
-            <p><strong>Email: </strong>{student.email}</p>
           </li>
         ))}
       </ul>
