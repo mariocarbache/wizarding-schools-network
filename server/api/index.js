@@ -123,5 +123,74 @@ router.delete("/wizarding-schools/:id", async (req, res) => {
     }
   });
 
+  router.put("/wizarding-schools/:id", async (req, res) => {
+    const schoolId = req.params.id;
+  
+    try {
+      const school = await Campus.findByPk(schoolId);
+  
+      if (!school) {
+        return res.status(404).json({ message: "Wizarding school not found" });
+      }
+  
+      school.name = req.body.name;
+      school.imageUrl = req.body.imageUrl;
+      school.description = req.body.description;
+      school.address = req.body.address;
+  
+      await school.save();
+  
+      res.json({ message: "Wizarding school updated successfully", school });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
+  
+  router.put("/students/:id", async (req, res) => {
+    const studentId = req.params.id;
+  
+    try {
+      const student = await Student.findByPk(studentId);
+  
+      if (!student) {
+        return res.status(404).json({ message: "Student not found" });
+      }
+  
+      student.firstName = req.body.firstName;
+      student.lastName = req.body.lastName;
+      student.email = req.body.email;
+      student.gpa = req.body.gpa;
+      student.CampusId = req.body.CampusId;
+  
+      await student.save();
+  
+      res.json({ message: "Student updated successfully", student });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  });
+
+  router.put('/unenroll/:studentId', async (req, res) => {
+    try {
+      const studentId = req.params.studentId;
+      const student = await Student.findByPk(studentId);
+  
+      if (!student) {
+        return res.status(404).json({ message: 'Student not found' });
+      }
+  
+      student.CampusId = null;
+      await student.save();
+  
+      res.json({ message: 'Student unenrolled successfully', student });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  });
+  
+
 
 module.exports = router;

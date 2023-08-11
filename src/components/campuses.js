@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AddWizardingSchoolForm from './AddWizardingSchoolForm';
+import EditWizardingSchoolForm from './EditWizardingSchoolForm';
 
 const WizardingSchoolsComponent = () => {
   const [schools, setSchools] = useState([]);
@@ -32,6 +33,16 @@ const WizardingSchoolsComponent = () => {
     }
   };
 
+  const handleSchoolUpdated = (updatedSchool) => {
+    const index = schools.findIndex((school) => school.id === updatedSchool.id);
+
+    if (index !== -1) {
+      const updatedSchools = [...schools];
+      updatedSchools[index] = updatedSchool;
+      setSchools(updatedSchools);
+    }
+  };
+
 
   return (
     <div>
@@ -50,6 +61,7 @@ const WizardingSchoolsComponent = () => {
               {campus.address}
             </p>
             <button onClick={() => handleSchoolDelete(campus.id)}>X</button>
+            <EditWizardingSchoolForm school={campus} onUpdate={handleSchoolUpdated} />
           </li>
         ))}
       </ul>

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import UpdateStudentForm from './UpdateStudentByIdForm';
 import AddStudentForm from './AddStudentForm';
 
 const StudentsComponent = () => {
   const [students, setStudents] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
 
   useEffect(() => {
     fetchStudents();
@@ -32,10 +35,20 @@ const StudentsComponent = () => {
     }
   };
 
+  const handleEditStudent = (student) => {
+    setSelectedStudent(student);
+  };
+
+  const handleUpdateStudent = (updatedStudent) => {
+    setStudents(students.map((student) => (student.id === updatedStudent.id ? updatedStudent : student)));
+    setSelectedStudent(null);
+  };
+
   return (
     <div>
       <h2>Wizarding Students</h2>
       <AddStudentForm onStudentAdded={handleStudentAdded} />
+      <UpdateStudentForm onUpdate={handleUpdateStudent} />
       <ul>
         {students.map((student) => (
           <li key={student.id}>
